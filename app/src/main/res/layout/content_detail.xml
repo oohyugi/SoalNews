@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="id.gits.soalnews.DetailActivity"
+    tools:showIn="@layout/activity_detail">
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrolli"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+
+
+
+        >
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            >
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:padding="10dp"
+                android:background="@color/colorPrimaryDark"
+
+                android:orientation="vertical"
+                >
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:id="@+id/tvTitle"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+
+
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:id="@+id/tvRead"
+                    android:textStyle="italic"
+                    android:textSize="15dp"
+                    android:layout_marginTop="5dp"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/tvSumber"
+                    android:textSize="10dp"
+
+                    />
+
+
+                />
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+                <TextView
+
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/tvDesc"
+                    android:layout_marginBottom="30dp"
+                    />
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>
