@@ -44,9 +44,9 @@ holder.click(dataBeritaBaru.get(position),mOnItemClickListener);
 
         viewDataBinding.setVariable(BR.vm, dataBeritaBaru.get(position));
         if (position>mPreviousPosition){
-            id.gits.soalnews.anim.AnimationUtils.scaleXY(holder);
+            id.gits.soalnews.anim.AnimationUtils.scaleX(holder);
         }else {
-            id.gits.soalnews.anim.AnimationUtils.scaleXY(holder);
+            id.gits.soalnews.anim.AnimationUtils.scaleX(holder);
         }
 
     }
