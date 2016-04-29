@@ -40,8 +40,8 @@ Toolbar toolbar;
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Bundle getdata = getIntent().getExtras();
         title=getdata.getString("title");
         read= getdata.getString("read");

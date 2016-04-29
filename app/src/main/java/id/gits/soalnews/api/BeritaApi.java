@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class BeritaApi {
 
-    private static final String BASE_URL="http://10.42.0.1";
+    private static final String BASE_URL="http://dev.gits.co.id/";
     private static BeritaApi beritaApi;
     public BeritaService beritaService;
     public Retrofit retrofit;

@@ -86,7 +86,7 @@ public class beritaPopulerFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mBaruAdapter=new BeritaBaruAdapter(getActivity(), datalist, new BeritaBaruAdapter.BindingHolder.OnItemClickListener() {
             @Override
-            public void onClick(BeritaBaruDao model) {
+            public void onItemClick(BeritaBaruDao model, int position) {
                 Intent intent = new Intent(getActivity(),DetailActivity.class);
                 intent.putExtra("title",model.getTitle());
                 intent.putExtra("desc",model.getDesc());
@@ -95,6 +95,8 @@ public class beritaPopulerFragment extends Fragment {
                 intent.putExtra("read",model.getRead());
                 startActivity(intent);
             }
+
+
         });
 
         mRecyclerView.setAdapter(mBaruAdapter);

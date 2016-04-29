@@ -8,84 +8,79 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import id.gits.soalnews.BR;
 import id.gits.soalnews.R;
 import id.gits.soalnews.dao.BeritaBaruDao;
+import id.gits.soalnews.databinding.RowBeritaBaruBinding;
+import id.gits.soalnews.vm.NewsRowVm;
 
 /**
  * Created by yogi on 19/04/16.
  */
 public class BeritaBaruAdapter extends RecyclerView.Adapter<BeritaBaruAdapter.BindingHolder> {
 
-    private final BindingHolder.OnItemClickListener mOnItemClickListener;
-    private List<BeritaBaruDao>dataBeritaBaru;
+    private BindingHolder.OnItemClickListener mOnItemClickListener;
+    private List<BeritaBaruDao>dataBeritaBaru =new ArrayList<>();
     private Context context;
 private  int mPreviousPosition=0;
-    public BeritaBaruAdapter(Context mcontext,List<BeritaBaruDao> mdataBeritaBaru,BindingHolder.OnItemClickListener onItemClickListener){
-        dataBeritaBaru=mdataBeritaBaru;
-        mOnItemClickListener= onItemClickListener;
-        context=mcontext;
+
+    public BeritaBaruAdapter(Context context, List<BeritaBaruDao> beritaBaruDaos, BindingHolder.OnItemClickListener onItemClickListener) {
+      this.context=context;
+        this.dataBeritaBaru=beritaBaruDaos;
+        this.mOnItemClickListener=onItemClickListener;
+
     }
 
     @Override
     public BeritaBaruAdapter.BindingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.row_berita_baru, parent, false);
+
+        context=parent.getContext();
+        RowBeritaBaruBinding binding= DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.row_berita_baru,parent,false);
 
         return new BindingHolder(binding);
-
     }
 
     @Override
-    public void onBindViewHolder(BeritaBaruAdapter.BindingHolder holder, int position) {
-        ViewDataBinding viewDataBinding = BindingHolder.getViewDataBinding();
-holder.click(dataBeritaBaru.get(position),mOnItemClickListener);
+    public void onBindViewHolder(BeritaBaruAdapter.BindingHolder holder, final int position) {
+        final BeritaBaruDao dao= dataBeritaBaru.get(position);
+        NewsRowVm vieRowVm= new NewsRowVm(context,dao);
+        holder.getBinding().setVariable(BR.vm,vieRowVm);
+        holder.getBinding().executePendingBindings();
+        holder.getBinding().getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOnItemClickListener.onItemClick(dao, position);
 
-        viewDataBinding.setVariable(BR.vm, dataBeritaBaru.get(position));
-        if (position>mPreviousPosition){
-            id.gits.soalnews.anim.AnimationUtils.scaleX(holder);
-        }else {
-            id.gits.soalnews.anim.AnimationUtils.scaleX(holder);
-        }
+            }
+        });
+
 
     }
 
     @Override
     public int getItemCount() {
-        return (null != dataBeritaBaru ? dataBeritaBaru.size() : 0);
+        return dataBeritaBaru.size();
     }
 
-  public static class BindingHolder extends RecyclerView.ViewHolder {
+    public static class BindingHolder extends RecyclerView.ViewHolder {
+        private RowBeritaBaruBinding binding;
+        public BindingHolder(RowBeritaBaruBinding binding){
+            super(binding.getRoot());
+            this.binding=binding;
+
+        }
+        public ViewDataBinding getBinding(){
+            return binding;
+        }
 
 
-      private static ViewDataBinding mViewDataBinding;
-
-      public BindingHolder( ViewDataBinding viewDataBinding) {
-          super(viewDataBinding.getRoot());
-
-          mViewDataBinding = viewDataBinding;
-          mViewDataBinding.executePendingBindings();
-      }
-
-      public static ViewDataBinding getViewDataBinding() {
-          return mViewDataBinding;
-      }
-
-      public void click(final BeritaBaruDao model,final OnItemClickListener listener){
-          itemView.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  listener.onClick(model);
-              }
-          });
-      }
+    public interface OnItemClickListener {
+        public void onItemClick(BeritaBaruDao beritaBaruDao,int position);
+    }
+    }
+    }
 
 
-      public interface OnItemClickListener {
-
-
-          void onClick(BeritaBaruDao model);
-      }
-  }
-}

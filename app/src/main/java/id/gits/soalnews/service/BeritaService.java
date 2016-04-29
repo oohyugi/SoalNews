@@ -12,12 +12,12 @@ import retrofit2.http.GET;
  */
 public interface BeritaService {
 
-    @GET ("/news/berita")
+    @GET ("apinews/berita")
     Call<BaseDao<List<BeritaBaruDao>>> getAllBerita();
 
-    @GET ("/news/populer")
+    @GET ("apinews/populer")
     Call<BaseDao<List<BeritaBaruDao>>> getPopulerBerita();
 
-    @GET ("/news/hot")
+    @GET ("apinews/hot")
     Call<BaseDao<List<BeritaBaruDao>>> getHotBerita();
 }

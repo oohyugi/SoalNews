@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="id.gits.soalnews.dao.BeritaBaruDao" />
+            type="id.gits.soalnews.vm.NewsRowVm" />
     </data>
 
 <android.support.v7.widget.CardView
